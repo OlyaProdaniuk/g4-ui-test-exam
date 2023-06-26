@@ -12,7 +12,7 @@ export function findProduct(productName) {
 export function headlessSignup(user) {
   cy.request({
     method: "POST",
-    url: "/api/Users",
+    url: "https://juice-shop-sanitarskyi.herokuapp.com//api/Users",
     body: {
       email: user.email,
       password: user.password,
@@ -24,20 +24,20 @@ export function headlessSignup(user) {
       securityAnswer: user.answer,
     },
   }).then((response) => {
-    expect(response.status).to.be.equal(200);
+    expect(response.status).to.be.equal(201);
 
     const userId = response.body.id;
 
     cy.request({
       method: "POST",
-      url: "/api/SecurityAnswers",
+      url: "https://juice-shop-sanitarskyi.herokuapp.com/api/SecurityAnswers",
       body: {
         UserId: userId,
         answer: user.answer,
         SecurityQuestionId: 7,
       },
     }).then((response) => {
-      expect(response.status).to.be.equal(200);
+      expect(response.status).to.be.equal(201);
     });
   });
 }
@@ -47,12 +47,13 @@ export function headlessLogin(user) {
 
   cy.request({
     method: "POST",
-    url: "/rest/user/login",
+    url: "https://juice-shop-sanitarskyi.herokuapp.com/rest/user/login",
     body: {
       email: user.email,
       password: user.password,
     },
   }).then((response) => {
+    console.log(response);
     expect(response.status).to.be.equal(200);
     let token = response.body.authentication.token;
     let bid = response.body.authentication.bid;

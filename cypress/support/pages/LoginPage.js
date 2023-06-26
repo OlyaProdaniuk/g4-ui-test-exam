@@ -1,7 +1,7 @@
 class LoginPage {
   visit() {
     cy.log("Open login page");
-    cy.visit("/#/login");
+    cy.visit("login");
   }
 
   closeBanner() {

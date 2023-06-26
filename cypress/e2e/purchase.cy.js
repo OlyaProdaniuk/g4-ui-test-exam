@@ -75,7 +75,7 @@ describe("Purchasing a juice", () => {
     let exprireMonth = faker.number.int({ min: 1, max: 12 }).toString();
     let expireYear = faker.number.int({ min: 2080, max: 2099 }).toString();
 
-    PaymentOptionPage.getAddNewCardButton().click();
+    PaymentPage.getAddNewCardButton().click();
 
     cy.log(
       `Add new card ${name}, ${cardNumber}, ${exprireMonth}, ${expireYear}`
